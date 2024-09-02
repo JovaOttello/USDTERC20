@@ -1,0 +1,419 @@
+<index.html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLASH USDT erc20 Sender - Retro Interactive Style</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        :root {
+            --primary-color: #0f0;
+            --secondary-color: #0ff;
+            --background-color: #000;
+            --hover-color: #00ff00;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 2px 2px #008000;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .animated-button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .animated-button:hover {
+            background-color: var(--hover-color);
+            box-shadow: 0 0 20px var(--hover-color);
+        }
+
+        .animated-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1)
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-50%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(150%) rotate(45deg);
+            }
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .section {
+            border: 2px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(0, 15, 0, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:hover {
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .section-title {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .license-info {
+            background-color: rgba(0, 15, 0, 0.8);
+            padding: 20px;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .license-card {
+            background: linear-gradient(145deg, #001500, #003000);
+            border: 2px solid var(--primary-color);
+            padding: 20px;
+            width: calc(33% - 20px);
+            min-width: 250px;
+            box-shadow: 0 0 10px var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .license-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .license-card h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .license-card p {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .license-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .faq {
+            background-color: rgba(0, 15, 0, 0.8);
+            padding: 20px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .faq h3 {
+            color: var(--secondary-color);
+        }
+
+        #svg-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            font-size: 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary-color);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            z-index: 9999;
+            font-family: 'VT323', monospace;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+
+        .retro-symbol {
+            position: absolute;
+            font-size: 24px;
+            color: var(--primary-color);
+            opacity: 0.7;
+            animation: float 5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .interactive-element {
+            position: absolute;
+            font-size: 36px;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.2);
+            color: var(--hover-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .logo {
+                font-size: 24px;
+            }
+            .license-card {
+                width: 100%;
+            }
+            .animated-button {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+            .chatbot-button {
+                padding: 12px 20px;
+                font-size: 18px;
+            }
+            .interactive-element {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg id="svg-background" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs>
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#004d00" stroke-width="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#000" stroke="#0f0" stroke-width="5"/>
+                    <text x="50" y="60" font-size="40" text-anchor="middle" fill="#0f0" font-family="VT323, monospace">FU</text>
+                </svg>
+                FLASH USDT erc20 Sender
+            </div>
+            <a href="https://wa.me/447753831282" class="animated-button" target="_blank">WhatsApp</a>
+        </header>
+        
+        <div class="main-content">
+            <div class="section">
+                <h1 class="section-title">Generate TODAY USDT/erc20 Cryptocurrencies</h1>
+                <p>Our Flash USDT is a unique solution, utilizing validator nodes on the ERC20 network to Mask a token with the same contract as USDT. This enables it to function like USDT, being transferable, swappable, bridgeable, p2p sellable, etc.</p>
+                <p>Generate TODAY USDT/erc20 Crypto currencies with smart contracts that the Blockchain does not recognize. It's not real coins for 1 year!</p>
+                <a href="https://jovaottello.github.io/FLASH-USDT-G/" class="animated-button" target="_blank">ACCESS NOW</a>
+            </div>
+
+            <div class="section license-info">
+                <h2 class="section-title">Licenses</h2>
+                <div class="license-card">
+                    <h3>Trial License</h3>
+                    <p>Get started with our trial offer</p>
+                    <p class="license-price">$65</p>
+                    <p>Receive $300 Flash USDT/erc20</p>
+                    <a href="https://wa.me/447753831282?text=Hello%2C%20I%27m%20interested%20in%20the%20Trial%20license." class="animated-button" target="_blank">Get Trial</a>
+                </div>
+                <div class="license-card">
+                    <h3>Standard License</h3>
+                    <p>Perfect for beginners</p>
+                    <p class="license-price">$100</p>
+                    <p>Receive $500 Flash USDT/erc20</p>
+                    <a href="https://wa.me/447753831282?text=Hello%2C%20I%27m%20interested%20in%20the%20Standard%20license." class="animated-button" target="_blank">Get Standard</a>
+                </div>
+                <div class="license-card">
+                    <h3>Premium License</h3>
+                    <p>For serious traders</p>
+                    <p class="license-price">$500</p>
+                    <p>Receive $25K Flash USDT/erc20</p>
+                    <a href="https://wa.me/447753831282?text=Hello%2C%20I%27m%20interested%20in%20the%20Premium%20license." class="animated-button" target="_blank">Get Premium</a>
+                </div>
+            </div>
+            
+            <div class="section faq">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <h3>Q: Is Flash USDT transferable?</h3>
+                <p>A: Yes, to any wallet</p>
+                
+                <h3>Q: How many "jumps"?</h3>
+                <p>A: There's no limit. Once transferred, the new owner can transfer, and so on. This thing of jump limit does not exist.</p>
+                
+                <h3>Q: Is there any demo available?</h3>
+                <p>A: For customers really interested in the tool but with monetary or trust issues we have a Trial Offer</p>
+                
+                <h3>Q: Is there an expiration date of the flashed values?</h3>
+                <p>A: Yes, they expire after 365 days.</p>
+                
+                <h3>Q: After purchasing my license, is it just activate it and send flash to any wallet?</h3>
+                <p>A: Yes, it's as simple as that.</p>
+                
+                <h3>Q: Can it be used for p2p?</h3>
+                <p>A: Absolutely, it's the most recommended practice</p>
+            </div>
+        </div>
+    </div>
+    
+    <button class="chatbot-button" onclick="openChatbot()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Chat with AI
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const svgBackground = document.getElementById('svg-background');
+            
+            function animateBackground() {
+                const gridOffset = Date.now() / 1000 % 50;
+                svgBackground.style.transform = `translateY(${gridOffset}px)`;
+                requestAnimationFrame(animateBackground);
+            }
+            
+            animateBackground();
+
+            // Add hover effect to license cards
+            const licenseCards = document.querySelectorAll('.license-card');
+            licenseCards.forEach(card => {
+                card.addEventListener('mouseover', () => {
+                    card.style.transform = 'translateY(-15px)';
+                    card.style.boxShadow = '0 0 30px #0f0';
+                });
+                card.addEventListener('mouseout', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '0 0 10px #0f0';
+                });
+            });
+
+            // Add retro symbols
+            const symbols = ['☆', '♦', '♠', '♥', '♣', '◉', '◎', '◈', '▣', '▤', '▥', '▦', '▧', '▨', '▩'];
+            for (let i = 0; i < 20; i++) {
+                const symbol = document.createElement('div');
+                symbol.classList.add('retro-symbol');
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = `${Math.random() * 100}vw`;
+                symbol.style.top = `${Math.random() * 100}vh`;
+                symbol.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(symbol);
+            }
+
+            // Add interactive elements
+            const interactiveSymbols = ['🚀', '💎', '🔗', '🌐', '🔒'];
+            for (let i = 0; i < 5; i++) {
+                const element = document.createElement('div');
+                element.classList.add('interactive-element');
+                element.textContent = interactiveSymbols[i];
+                element.style.left = `${Math.random() * 90 + 5}vw`;
+                element.style.top = `${Math.random() * 90 + 5}vh`;
+                element.addEventListener('click', () => {
+                    alert(`You clicked on ${interactiveSymbols[i]}! Discover more about our Flash USDT service.`);
+                });
+                document.body.appendChild(element);
+            }
+        });
+
+        function openChatbot() {
+            window.open('https://jovaottello.github.io/CHATBOTFLASH-NEW/', '_blank', 'width=400,height=600');
+        }
+    </script>
+</body>
+</html>
